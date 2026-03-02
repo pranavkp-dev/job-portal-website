@@ -64,7 +64,7 @@ Example:
 ## ⚙️ Installation & Setup
 
 1. Clone the repository
-git clone https://github.com/yourusername/job-portal-website.git
+git clone https://github.com/pranavkp-dev/job-portal-website.git
 
 2. Navigate to project folder
 cd job-portal-website
