@@ -54,7 +54,7 @@ The system allows employers to post job openings and manage listings, while appl
 
 ## 📷 Screenshots
 ![Home Page](screenshots/homepage.png)
-![Register Page](screenshots/registerpage.png)
+![Register Page](screenshots/register%20page.png)
 
 
 Example:
