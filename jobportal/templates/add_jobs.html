@@ -1,0 +1,196 @@
+{% load static %} 
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+
+
+
+        body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: #f5f7fb;
+}
+
+/* Container */
+.form-container {
+    max-width: 760px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 35px 45px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Headings */
+.employer-form h2 {
+    margin-bottom: 25px;
+    font-weight: 600;
+    color: #1f2933;
+    border-bottom: 1px solid #eef1f4;
+    padding-bottom: 10px;
+}
+
+.employer-form h3 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #2563eb;
+}
+
+/* Labels */
+.employer-form label {
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+/* Inputs & Select */
+.employer-form input,
+.employer-form select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 7px;
+    border: 1px solid #d7dce2;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    background: #fff;
+}
+
+/* Focus Effect */
+.employer-form input:focus,
+.employer-form select:focus {
+    border-color: #2563eb;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Date input fix */
+input[type="date"] {
+    color: #444;
+}
+
+/* Button */
+.employer-form button {
+    margin-top: 28px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.employer-form button:hover {
+    background: #1e4fd6;
+    transform: translateY(-1px);
+}
+
+/* Optional spacing improvement */
+.employer-form {
+    display: flex;
+    flex-direction: column;
+}
+
+    </style>
+</head>
+<body>
+    
+
+   <div class="form-container">
+    <form action="{% url 'addjob' %}" method="post" enctype="multipart/form-data" class="employer-form">
+        {% csrf_token %}
+
+        <h2>Add Jobs</h2>
+
+        <label>Title</label>
+        <input type="text" name="job_title" required>
+
+        <label>Company</label>
+        <input type="text" name="company_name" required>
+
+
+        <label>Description</label>
+        <input type="text" name="job_desc" required>
+
+        <label>Location</label>
+        <input type="text" name="company_loc" required>
+
+        <label>Required Skills</label>
+        <input type="text" name="req_skills" required>
+
+        <label>Job Type</label>
+       <label>Job Type</label>
+<select name="job_type">
+    <option value="Full Time">Full Time</option>
+    <option value="Part Time">Part Time</option>
+    <option value="Internship">Internship</option>
+    <option value="Contract">Contract</option>
+</select>
+
+
+
+          <label>Work Mode</label>
+         <select name="work_mode">
+            <option value="onsite">On-site</option>
+            <option value="hybrid">Hybrid</option>
+            <option value="remote">Remote</option>
+        </select>
+
+        <label>Experience Level</label>
+         <select name="Exp_level">
+            <option value="fresher">Fresher</option>
+            <option value="1-2">1-2 Years</option>
+            <option value="3-5">3-5 Years</option>
+            <option value="5+">5+ Years</option>
+           
+        </select>
+
+        <label>Education Required</label>
+        <input type="text" name="Education_req" required>
+
+        <label>Salary Range</label>
+        <input type="text" name="salary_range" required>
+
+        <label>Vacancies</label>
+        <input type="text" name="vacancies" required>
+
+        <label>DeadLine</label>
+        <input type="date" name="app_deadline" required>
+
+        <label>Joining Time</label>
+        <input type="text" name="joining_time" required>
+
+
+
+        <h3>Recruiter Details</h3>
+
+
+        <label>Name</label>
+        <input type="text" name="recruiter_name" required>
+
+        <label>Phone</label>
+        <input type="text" name="recruiter_phone" required>
+
+        <label>Email</label>
+        <input type="text" name="recruiter_email" required>
+
+
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+</body>
+</html>

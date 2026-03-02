@@ -1,0 +1,191 @@
+{% load static %}
+
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f4f6f9;
+        }
+
+        .profile-wrapper {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .profile-card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 30px;
+            color: #fff;
+        }
+
+        .profile-header h4 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .profile-header h6 {
+            margin-top: 6px;
+            font-size: 15px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .profile-body {
+            padding: 30px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px 30px;
+            margin-bottom: 25px;
+        }
+
+        .info-grid p {
+            margin: 6px 0;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .info-grid strong {
+            color: #222;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section h5 {
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #667eea;
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+
+        .section p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .resume-box {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .resume-box img {
+            max-width: 120px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+
+        .resume-box a {
+            padding: 10px 16px;
+            background: #667eea;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        .resume-box a:hover {
+            background: #5a67d8;
+        }
+
+        @media (max-width: 600px) {
+            .profile-header h4 {
+                font-size: 22px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="profile-wrapper">
+        <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="profile-card">
+
+                <div class="profile-header">
+                    <h4>{{ profile.username }}</h4>
+                    <h6>{{ profile.header }}</h6>
+                </div>
+
+                <div class="profile-body">
+
+                    <div class="info-grid">
+                        <p><strong>Email:</strong> {{ profile.email }}</p>
+                        <p><strong>Mobile:</strong> {{ profile.number }}</p>
+                        <p><strong>DOB:</strong> {{ profile.dob }}</p>
+                        <p><strong>Gender:</strong> {{ profile.gender }}</p>
+                        <p><strong>Location:</strong> {{ profile.loc }}</p>
+                        <p><strong>Qualification:</strong> {{ profile.qualification }}</p>
+                        <p><strong>Degree:</strong> {{ profile.degree }}</p>
+                        <p><strong>Experience:</strong> {{ profile.exp }}</p>
+                        <p><strong>Preferred Role:</strong> {{ profile.role }}</p>
+                        <p><strong>Job Type:</strong> {{ profile.type }}</p>
+                        <p><strong>Availability:</strong> {{ profile.availability }}</p>
+                        <p><strong>Skills:</strong> {{ profile.skills }}</p>
+                    </div>
+
+                    <div class="section">
+                        <h5>About</h5>
+                        <p>{{ profile.bio }}</p>
+                    </div>
+
+                    <div class="section">
+                        <h5>Resume</h5>
+                        <div class="resume-box">
+                            {% if profile.resume %}
+                            <img src="{{ profile.resume.url }}" alt="resume">
+                            <a href="{{ profile.resume.url }}" target="_blank">View / Download</a>
+                            {% endif %}
+
+                            <a href="{% url 'editprofile' %}">Edit Profile</a>
+                            <a href="{% url 'logout' %}">Logout</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

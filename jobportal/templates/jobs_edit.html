@@ -1,0 +1,173 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px;
+            background: #f5f7fb;
+        }
+
+        .table-container {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1200px;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+        }
+
+        th {
+            padding: 14px 12px;
+            font-size: 14px;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 12px;
+            font-size: 13px;
+            color: #333;
+            border-bottom: 1px solid #eee;
+        }
+
+        tbody tr:hover {
+            background: #f0f4ff;
+            transition: 0.2s ease;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #fafbff;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 6px;
+            display: inline-block;
+            transition: 0.2s ease;
+        }
+
+        a[href*="edit"] {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        a[href*="edit"]:hover {
+            background: #1565c0;
+            color: white;
+        }
+
+        a[href*="delete"] {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        a[href*="delete"]:hover {
+            background: #c62828;
+            color: white;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cfd8dc;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #90a4ae;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+    <div class="table-container">
+        <form action="{% url 'jobsedit' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Company Name
+                        </th>
+                        <th>Job Title</th>
+                        <th>Job Desc</th>
+                        <th>Location</th>
+                        <th>Required Skills</th>
+                        <th>Job Type</th>
+                        <th>Work Mode</th>
+                        <th>Experience</th>
+                        <th>Education</th>
+                        <th>Salary Range</th>
+                        <th>Vacancies</th>
+                        <th>Application Deadline</th>
+                        <th>Joining Time</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for d in data %}
+                    <tr>
+
+                        <td>{{ d.company_name }}</td>
+                        <td>{{ d.job_title }}</td>
+                        <td>{{ d.job_desc }}</td>
+                        <td>{{ d.company_loc }}</td>
+                        <td>{{ d.req_skills }}</td>
+                        <td>{{ d.job_type }}</td>
+                        <td>{{ d.work_mode }}</td>
+                        <td>{{ d.Exp_level }}</td>
+                        <td>{{ d.Education_req }}</td>
+                        <td>{{ d.salary_range }}</td>
+                        <td>{{ d.vacancies }}</td>
+                        <td>{{ d.app_deadline }}</td>
+                        <td>{{ d.joining_time }}</td>
+                        <td> <a href="{% url 'edit' d.id %}" type="button">EDIT</a></td>
+                        <td> <a href="{% url 'delete' d.id %}" type="button">DELETE</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    </div>
+
+
+
+</body>
+
+</html>

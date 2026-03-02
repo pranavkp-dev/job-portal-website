@@ -1,0 +1,275 @@
+{% load static %} 
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    form {
+        background: #ffffff;
+        padding: 35px;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 700px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+        animation: fadeIn 0.35s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+        margin-top: 0;
+        margin-bottom: 25px;
+        color: #203a43;
+        text-align: center;
+        font-weight: 650;
+    }
+
+    .update-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .update-table tr {
+        border-bottom: 1px solid #f1f1f1;
+    }
+
+    .update-table td {
+        padding: 12px 8px;
+        font-size: 14px;
+        vertical-align: middle;
+    }
+
+    .update-table td:first-child {
+        font-weight: 600;
+        color: #444;
+        width: 35%;
+        white-space: nowrap;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid #dcdcdc;
+        font-size: 14px;
+        transition: 0.25s ease;
+        background: #f9fafb;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 70px;
+    }
+
+    input:focus,
+    textarea:focus {
+        outline: none;
+        border-color: #2c5364;
+        background: #ffffff;
+        box-shadow: 0 0 0 3px rgba(44, 83, 100, 0.15);
+    }
+
+    input[type="file"] {
+        font-size: 13px;
+    }
+
+    img {
+        width: 90px;
+        border-radius: 10px;
+        margin-top: 5px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .btn-row {
+        padding-top: 22px;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #203a43, #2c5364);
+        color: white;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.25s ease;
+        letter-spacing: 0.3px;
+    }
+
+    input[type="submit"]:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    input[type="submit"]:active {
+        transform: translateY(0);
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+        form {
+            margin: 15px;
+            padding: 22px;
+        }
+
+        .update-table td {
+            display: block;
+            width: 100%;
+            padding: 6px 0;
+        }
+
+        .update-table td:first-child {
+            margin-top: 10px;
+            font-size: 13px;
+        }
+    }
+</style>
+
+</head>
+<body>
+
+    <h2>Edit Your Profile</h2>
+    
+
+    <div>
+
+
+    <form action="{% url 'updateprofile' des.id %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <table class="update-table">
+                    
+
+                    <tr>
+                        <td>Number</td>
+                        <td><input type="text" name="number" value="{{ form.number }}"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Date Of Birth</td>
+                        <td><input type="text" name="dob" value="{{form.dob }}"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Gender</td>
+                        <td><input type="text" name="gender" value="{{ form.gender }}"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Location</td>
+                        <td><input type="text" name="loc" value="{{ form.loc }}"></td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Header</td>
+                        <td><input type="text" name="header" value="{{ form.header }}"></td>
+                    </tr>
+
+
+                    <tr>
+                        <td>About</td>
+                        <td><input type="text" name="bio" value="{{ form.bio }}"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Qualification</td>
+                        <td><input type="text" name="qualfication" value="{{ form.qualification }}"></td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Degree</td>
+                        <td><input type="text" name="degree" value="{{ form.degree }}"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Experience</td>
+                        <td><input type="text" name="exp" value="{{ form.exp }}"></td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Role</td>
+                        <td><input type="date" name="role" value="{{ form.role }}"></td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Job Type</td>
+                        <td><input type="text" name="type" value="{{ form.type }}"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Availability</td>
+                        <td><input type="text" name="availability" value="{{ form.availability }}"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Skills</td>
+                        <td><input type="text" name="skills" value="{{ form.skills }}"></td>
+                    </tr>
+
+                     <tr>
+                        <td>Resume</td>
+                        <td>
+                            {% if form.resume %}
+                            <img src="{{ form.resume.url }}">
+                            {% else %}
+                            <p>No resume uploaded</p>
+                            {% endif %}
+
+                        </td>
+                    </tr>
+
+                     <tr>
+                        <td>New Resume</td>
+                        <td>
+                            <input type="file" name="resume" accept="uploads/*">
+                        </td>
+                    </tr>
+
+                    
+
+                    <tr>
+                        <td colspan="2" class="btn-row">
+                            <input type="submit" value="Update">
+                        </td>
+                    </tr>
+                </table>
+
+                
+            </form>
+
+            </div>
+
+
+
+</body>
+</html>
